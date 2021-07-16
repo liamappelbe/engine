@@ -4,9 +4,10 @@
 
 import 'dart:html' as html;
 
-import 'package:ui/src/engine.dart' show domRenderer, DomRenderer, NullTreeSanitizer;
 import 'package:ui/ui.dart' as ui;
 
+import '../../engine.dart'  show NullTreeSanitizer;
+import '../dom_renderer.dart';
 import '../shadow.dart';
 import '../util.dart';
 import 'dom_canvas.dart';
@@ -159,7 +160,7 @@ class PersistedClipRRect extends PersistedContainerSurface
 
   @override
   void apply() {
-    html.CssStyleDeclaration style = rootElement!.style;
+    final html.CssStyleDeclaration style = rootElement!.style;
     style
       ..left = '${rrect.left}px'
       ..top = '${rrect.top}px'
@@ -411,7 +412,7 @@ class PersistedPhysicalShape extends PersistedContainerSurface
   @override
   void update(PersistedPhysicalShape oldSurface) {
     super.update(oldSurface);
-    bool pathChanged = oldSurface.path != path;
+    final bool pathChanged = oldSurface.path != path;
     if (pathChanged) {
       localClipBounds = null;
     }
